@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ProductCard from "../../../common/product/ProductCard";
 
 const EditorPick = () => {
@@ -11,7 +12,9 @@ const EditorPick = () => {
         </div>
         <div className="flex flex-wrap justify-center">
           {count.map((id) => (
-            <ProductCard path={id} key={id} />
+            <Link to={`/product/${id}`}>
+              <ProductCard path={id} key={id} />
+            </Link>
           ))}
         </div>
       </div>

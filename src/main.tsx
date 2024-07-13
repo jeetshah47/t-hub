@@ -6,11 +6,18 @@ import LoginForm from "./module/login/components/form/LoginForm.tsx";
 import SignupForm from "./module/login/components/form/SignupForm.tsx";
 import App from "./App.tsx";
 import LoginPage from "./module/login/page/LoginPage.tsx";
+import ProductPage from "./module/product/page/ProductPage.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "/product/:id",
+        element: <ProductPage />,
+      },
+    ],
   },
   {
     path: "/auth",

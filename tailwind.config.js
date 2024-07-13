@@ -15,7 +15,7 @@ export default {
         "dark-secondary": "#242535",
       },
       colors: {
-        secondary: "#52535F",
+        secondary: "#737373",
         blue: "#4B6BFB",
         "white-footer": "#F6F6F7",
         "black-footer": "#141624",
@@ -26,7 +26,7 @@ export default {
         "dark-primary": "#242535",
       },
       textColor: {
-        primary: "#3B3C4A",
+        primary: "#252B42",
         "dark-primary": "#BABABF",
         "head-dark": "#181A2A",
         "head-primary": "#FFFFFF",
