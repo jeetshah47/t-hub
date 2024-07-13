@@ -1,7 +1,7 @@
 import ProductCard from "../../../common/product/ProductCard";
 
 const EditorPick = () => {
-  const count = Array.from({ length: 8 }, (value, index) => index + 1);
+  const count = Array.from({ length: 8 }, (_value, index) => index + 1);
   return (
     <div className="flex items-center justify-center pt-10">
       <div className="w-3/4">
