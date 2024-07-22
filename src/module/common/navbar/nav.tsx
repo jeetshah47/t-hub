@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 
 const NavBar = () => {
   const [show, setShow] = useState(true);
   const path = useLocation();
+  const navigate = useNavigate();
+
+  const handleCartButton = () => {
+    navigate("/cart");
+  };
 
   useEffect(() => {
     if (path.pathname.includes("login")) setShow(false);
@@ -23,13 +28,15 @@ const NavBar = () => {
           <Link to={"/product/1"}>Contact</Link>
         </div>
         <div className="flex items-center gap-10">
-          <Icon icon={"bytesize:cart"} />
+          <div onClick={handleCartButton}>
+            <Icon icon={"bytesize:cart"} />
+          </div>
           <Icon icon={"iconamoon:profile-circle-light"} />
           <div>
             <Link to={"/auth/login"}>
-            <span className="text-blue hover:cursor-pointer">
-              Login/Signup
-            </span>
+              <span className="text-blue hover:cursor-pointer">
+                Login/Signup
+              </span>
             </Link>
           </div>
         </div>
