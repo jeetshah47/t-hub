@@ -14,6 +14,7 @@ const NavBar = () => {
   useEffect(() => {
     if (path.pathname.includes("login")) setShow(false);
     else setShow(true);
+    
   }, [path]);
 
   return (
@@ -29,15 +30,26 @@ const NavBar = () => {
         </div>
         <div className="flex items-center gap-10">
           <div onClick={handleCartButton}>
-            <Icon icon={"bytesize:cart"} />
+            <Icon fontSize={"24px"} icon={"bytesize:cart"} />
           </div>
-          <Icon icon={"iconamoon:profile-circle-light"} />
+          <Icon fontSize={"24px"} icon={"iconamoon:profile-circle-light"} />
           <div>
-            <Link to={"/auth/login"}>
-              <span className="text-blue hover:cursor-pointer">
-                Login/Signup
-              </span>
-            </Link>
+            {!localStorage.getItem("user") && (
+              <Link to={"/auth/login"}>
+                <span className="text-blue hover:cursor-pointer">
+                  Login/Signup
+                </span>
+              </Link>
+            )}
+          </div>
+          <div>
+            {localStorage.getItem("user") === "admin" && (
+              <Link to={"/admin/orders"}>
+                <span className="text-blue hover:cursor-pointer">
+                  View Orders
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </div>

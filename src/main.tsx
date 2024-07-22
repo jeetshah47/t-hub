@@ -7,6 +7,7 @@ import SignupForm from "./module/login/components/form/SignupForm.tsx";
 import App from "./App.tsx";
 import LoginPage from "./module/login/page/LoginPage.tsx";
 import ProductPage from "./module/product/page/ProductPage.tsx";
+import ViewOrderPage from "./module/admin/page/ViewOrderPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,15 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         // element
+      },
+      {
+        path: "/admin",
+        children: [
+          {
+            path: "/admin/orders",
+            element: <ViewOrderPage />
+          }
+        ]
       }
     ],
   },
@@ -37,6 +47,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

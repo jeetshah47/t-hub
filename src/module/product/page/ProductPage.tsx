@@ -7,7 +7,7 @@ const ProductPage = () => {
   const { id } = params;
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center h-screen">
       <div className="w-3/4">
         <div>
           <p>Home</p>

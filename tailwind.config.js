@@ -13,6 +13,9 @@ export default {
         secondary: "#E8E8EA",
         "dark-primary": "#181A2A",
         "dark-secondary": "#242535",
+        "status-blue": "#93C5FD",
+        "status-yellow": "#FCD34D",
+        "status-green": "#6EE7B7",
       },
       colors: {
         secondary: "#737373",

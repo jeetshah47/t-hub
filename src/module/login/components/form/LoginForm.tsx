@@ -4,7 +4,7 @@ import { Link, redirect, useNavigate } from "react-router-dom";
 // import { loginUser } from "../../apis/login.api";
 
 const LoginForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -12,13 +12,21 @@ const LoginForm = () => {
   });
 
   const handleGoogleAuth = () => {
+
     redirect("/auth/singup");
   };
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    
     e.preventDefault();
     if (loginData.email === "admin" || loginData.password === "/") {
-      navigate("/")
+      setTimeout(() => {
+        localStorage.setItem(
+          "user",
+          loginData.email === "admin" ? "admin" : "no"
+        );
+        navigate("/");
+      }, 1500);
     }
     // try {
     //   const payload = {
