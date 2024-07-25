@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import Avatar from "../avatar/avatar";
+import { UserData } from "../../login/apis/login.api";
+import { getLocalStorate } from "../../utils/LocalStorage";
 
 const NavBar = () => {
   const [show, setShow] = useState(true);
   const path = useLocation();
   const navigate = useNavigate();
-
+  const [userData, setUserData] = useState<UserData>();
   const handleCartButton = () => {
     navigate("/cart");
   };
@@ -14,8 +17,12 @@ const NavBar = () => {
   useEffect(() => {
     if (path.pathname.includes("login")) setShow(false);
     else setShow(true);
-    
   }, [path]);
+
+  useEffect(() => {
+    const userDetails = getLocalStorate("user");
+    setUserData(userDetails);
+  }, []);
 
   return (
     <div className={`flex-initial  w-3/5 py-4 ${!show && "hidden"}`}>
@@ -32,9 +39,14 @@ const NavBar = () => {
           <div onClick={handleCartButton}>
             <Icon fontSize={"24px"} icon={"bytesize:cart"} />
           </div>
-          <Icon fontSize={"24px"} icon={"iconamoon:profile-circle-light"} />
+          {userData && (
+            <div>
+              <Avatar initial={userData?.first_name[0] + userData?.last_name[0]} />
+              {/* <Icon fontSize={"24px"} icon={"iconamoon:profile-circle-light"} /> */}
+            </div>
+          )}
           <div>
-            {!localStorage.getItem("user") && (
+            {!userData && (
               <Link to={"/auth/login"}>
                 <span className="text-blue hover:cursor-pointer">
                   Login/Signup
@@ -42,8 +54,9 @@ const NavBar = () => {
               </Link>
             )}
           </div>
+          <div></div>
           <div>
-            {localStorage.getItem("user") === "admin" && (
+            {userData?.first_name === "admin" && (
               <Link to={"/admin/orders"}>
                 <span className="text-blue hover:cursor-pointer">
                   View Orders

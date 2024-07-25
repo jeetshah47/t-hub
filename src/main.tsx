@@ -8,6 +8,7 @@ import App from "./App.tsx";
 import LoginPage from "./module/login/page/LoginPage.tsx";
 import ProductPage from "./module/product/page/ProductPage.tsx";
 import ViewOrderPage from "./module/admin/page/ViewOrderPage.tsx";
+import UserPages from "./module/user/page/UserPages.tsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/product/:id",
         element: <ProductPage />,
+      },
+      {
+        path: "/user/:id",
+        element: <UserPages />,
       },
       {
         path: "/cart",

@@ -4,6 +4,7 @@ import NavBar from "./module/common/navbar/nav";
 import HomePage from "./module/home/page/HomePage";
 import ProductPage from "./module/product/page/ProductPage";
 import ViewOrderPage from "./module/admin/page/ViewOrderPage";
+import UserPages from "./module/user/page/UserPages";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/admin/orders" element={<ViewOrderPage />} />
           <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/user/:id" element={<UserPages />} />
         </Routes>
       </div>
       <div>
