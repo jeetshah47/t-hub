@@ -23,3 +23,34 @@ body {
   align-items: center;
   /* border: 1px solid blue; */
 }
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  align-items: center;
+  height: 100%;
+  background-color: #f0f0f0;
+  width: 100%;
+  z-index: 200;
+}
+
+/* Loader styling */
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #127ee4;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+/* Keyframes for spinning animation */
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}

@@ -4,6 +4,7 @@ import Illutration from "../components/illustration/Illutration";
 import SignupForm from "../components/form/SignupForm";
 
 const LoginPage = () => {
+
   return (
     <div className="w-full h-full flex">
       <Illutration />
@@ -13,7 +14,6 @@ const LoginPage = () => {
       </Routes>
     </div>
   );
-}
+};
 
 export default LoginPage;
-

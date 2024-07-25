@@ -1,22 +1,19 @@
 import axios from "axios";
 
-interface UserData {
-  access_token: string;
-  user: {
-    email: string;
-    isGithubAuth: boolean;
-    isGoogleAuth: boolean;
-    name: string;
-    password: string;
-    profileImg: string;
-  };
+export interface UserData {
+  email: string;
+  first_name:string;
+  id: string;
+  last_name: string;
+  password: string;
+  phone_number: string;
 }
 
 export const loginUser = async (payload: {
   email: string;
   password: string;
 }): Promise<UserData> => {
-  const result = await axios.post("http://localhost:3000/api/auth/login", {
+  const result = await axios.post("http://localhost:5000/login/user", {
     ...payload,
   });
 
