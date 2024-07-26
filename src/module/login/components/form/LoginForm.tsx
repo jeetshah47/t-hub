@@ -33,7 +33,7 @@ const LoginForm = () => {
       setLocalStorage("user", userLogin);
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.log(error); 
       setLoader(false);
     }
   };

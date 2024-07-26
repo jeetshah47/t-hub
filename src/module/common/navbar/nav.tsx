@@ -21,7 +21,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const userDetails = getLocalStorate("user");
-    setUserData(userDetails);
+    if (userDetails) setUserData(userDetails);
   }, []);
 
   return (
@@ -41,8 +41,10 @@ const NavBar = () => {
           </div>
           {userData && (
             <div>
-              <Avatar initial={userData?.first_name[0] + userData?.last_name[0]} />
-              {/* <Icon fontSize={"24px"} icon={"iconamoon:profile-circle-light"} /> */}
+              <Avatar
+                initial={userData.first_name[0] + userData.last_name[0]}
+                id={userData.id ?? ""}
+              />
             </div>
           )}
           <div>

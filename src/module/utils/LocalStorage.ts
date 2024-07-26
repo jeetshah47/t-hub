@@ -7,7 +7,6 @@ export const getLocalStorate = (key: string) => {
   if (data) {
     return JSON.parse(data);
   }
-  
-  return {};
 
+  return null
 };
