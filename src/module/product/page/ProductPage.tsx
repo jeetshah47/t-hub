@@ -1,10 +1,17 @@
 import { Icon } from "@iconify/react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { CartContext } from "../../../App";
 
 const ProductPage = () => {
   const params = useParams();
 
   const { id } = params;
+  const cart = useContext(CartContext);
+
+  const handleUpdateCart = () => {
+    cart?.addToCart(id ?? "1");
+  };
 
   return (
     <div className="flex justify-center h-screen">
@@ -72,8 +79,11 @@ const ProductPage = () => {
                   fit.
                 </p>
               </div>
-              <button className="bg-blue p-2 text-white font-semibold w-fit rounded">
-                <p>Select Options</p>
+              <button
+                onClick={handleUpdateCart}
+                className="bg-blue p-2 text-white font-semibold w-fit rounded"
+              >
+                <p>Add To Cart</p>
               </button>
             </div>
           </div>

@@ -1,17 +1,25 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import Avatar from "../avatar/avatar";
 import { UserData } from "../../login/apis/login.api";
-import { getLocalStorate } from "../../utils/LocalStorage";
+import { getLocalStorate, clearStorage } from "../../utils/LocalStorage";
+import { CartContext } from "../../../App";
 
 const NavBar = () => {
   const [show, setShow] = useState(true);
   const path = useLocation();
   const navigate = useNavigate();
   const [userData, setUserData] = useState<UserData>();
+  const cartData = useContext(CartContext);
+
   const handleCartButton = () => {
     navigate("/cart");
+  };
+
+  const handleLogout = () => {
+    clearStorage();
+    navigate("/auth/login");
   };
 
   useEffect(() => {
@@ -36,8 +44,12 @@ const NavBar = () => {
           <Link to={"/product/1"}>Contact</Link>
         </div>
         <div className="flex items-center gap-10">
-          <div onClick={handleCartButton}>
+          <div onClick={handleCartButton} className="relative">
             <Icon fontSize={"24px"} icon={"bytesize:cart"} />
+            <div className="absolute top-5 left-5 rounded-full bg-yellow-400 text-white text-xs w-5 h-5 flex items-center justify-center">
+              <p className="font-semibold">{cartData?.cartItems.length}</p>
+
+            </div>
           </div>
           {userData && (
             <div>
@@ -64,6 +76,13 @@ const NavBar = () => {
                   View Orders
                 </span>
               </Link>
+            )}
+          </div>
+          <div>
+            {userData && (
+              <div onClick={handleLogout}>
+                <span className="text-blue hover:cursor-pointer">Logout</span>
+              </div>
             )}
           </div>
         </div>

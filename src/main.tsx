@@ -9,6 +9,8 @@ import LoginPage from "./module/login/page/LoginPage.tsx";
 import ProductPage from "./module/product/page/ProductPage.tsx";
 import ViewOrderPage from "./module/admin/page/ViewOrderPage.tsx";
 import UserPages from "./module/user/page/UserPages.tsx";
+import OperationPage from "./module/admin/page/OperationPage.tsx";
+
 
 const router = createBrowserRouter([
   {
@@ -33,7 +35,11 @@ const router = createBrowserRouter([
           {
             path: "/admin/orders",
             element: <ViewOrderPage />
-          }
+          },
+          {
+            path: "/admin/",
+            element: <OperationPage />
+          },
         ]
       }
     ],

@@ -7,7 +7,7 @@ export const fetchAddress = async (userId: string): Promise<Address[]> => {
 };
 
 export const addAddress = async (payload: Address): Promise<Address> => {
-  const result = await axios.post("http://localhost:5000/address/", {
+  const result = await axios.post("http://localhost:5000/address", {
     ...payload, 
   });
 

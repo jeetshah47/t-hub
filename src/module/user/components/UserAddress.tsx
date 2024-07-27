@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchAddress } from "../apis/UserApis";
+import { addAddress, fetchAddress } from "../apis/UserApis";
+import Modal from "../../common/modal/Modal";
+import AddressForm from "./AddressForm";
 
 export interface Address {
   country: string;
@@ -17,6 +19,26 @@ type UserAddressProps = {
 
 const UserAddress = ({ userId }: UserAddressProps) => {
   const [addresses, setAddress] = useState<Address[]>();
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => {
+    setShowModal(!showModal);
+  };
+
+  const handleOnAddAddress = async (params: Address) => {
+    try {
+      const request = await addAddress({ ...params, user_id: userId });
+      console.log("Address Request", request);
+      alert("Alert Address Added Successfully");
+      setShowModal(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCancelAdd = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,7 +47,7 @@ const UserAddress = ({ userId }: UserAddressProps) => {
       setAddress(addresses);
     };
     fetchData();
-  }, [userId]);
+  }, [userId, showModal]);
 
   return (
     <div className="w-2/4">
@@ -56,8 +78,21 @@ const UserAddress = ({ userId }: UserAddressProps) => {
       ))}
 
       <div className="w-full py-5">
-        <button className="py-2 w-full bg-purple-700 text-white font-semibold px-2 rounded">Add Address</button>
+        <button
+          onClick={handleShowModal}
+          className="py-2 w-full bg-purple-700 text-white font-semibold px-2 rounded"
+        >
+          Add Address
+        </button>
       </div>
+      {showModal && (
+        <Modal title="Add Address">
+          <AddressForm
+            onAddAddress={handleOnAddAddress}
+            onCancelAddress={handleCancelAdd}
+          />
+        </Modal>
+      )}
     </div>
   );
 };

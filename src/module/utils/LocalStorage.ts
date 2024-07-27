@@ -8,5 +8,7 @@ export const getLocalStorate = (key: string) => {
     return JSON.parse(data);
   }
 
-  return null
+  return null;
 };
+
+export const clearStorage = () => localStorage.clear();
