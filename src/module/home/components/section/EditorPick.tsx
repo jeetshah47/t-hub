@@ -1,8 +1,20 @@
 import { Link } from "react-router-dom";
 import ProductCard from "../../../common/product/ProductCard";
+import { useEffect, useState } from "react";
+import { getProducts, Product } from "../../../admin/api/admin.api";
 
 const EditorPick = () => {
-  const count = Array.from({ length: 8 }, (_value, index) => index + 1);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getProducts({});
+      console.log(data);
+      setProducts(data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="flex items-center justify-center pt-10">
       <div className="w-3/4">
@@ -11,9 +23,9 @@ const EditorPick = () => {
           <p className="text-2xl font-semibold">BESTSELLER PRODUCTS</p>
         </div>
         <div className="flex flex-wrap justify-center">
-          {count.map((id) => (
-            <Link to={`/product/${id}`}>
-              <ProductCard path={id} key={id} />
+          {products.map((product) => (
+            <Link key={product.id} to={`/product/${product.id}`}>
+              <ProductCard product={product} key={product.id} />
             </Link>
           ))}
         </div>

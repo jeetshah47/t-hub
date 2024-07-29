@@ -1,17 +1,24 @@
+import { Product } from "../../admin/api/admin.api";
+
 type ProductCardProps = {
-  path: number;
+  product: Product;
 };
 
-const ProductCard = ({ path }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="py-12 px-2">
-      <img className="w-60 h-96" src={`/product/${path}.png`} alt="" />
+      <img
+        className="w-60 h-96"
+        src={`${product.images_location}`}
+        alt=""
+      />
       <div className="flex flex-col py-4 space-y-3 items-center w-full justify-center">
-        <p>Graphic Design</p>
-        <p className="text-primary font-bold">Marvel Department</p>
+        <p>{product.name}</p>
+        <p className="text-primary font-bold">{product.description}</p>
+        <p className="text-primary font-bold">{product.colour}</p>
         <div className="flex gap-2 font-semibold">
-          <p className="text-secondary">$16.4</p>
-          <p className="text-green-600">$6.4</p>
+          <p className="text-secondary">{product.type}</p>
+          <p className="text-green-600">${product.price}</p>
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
-
 const firebaseConfig = {
   apiKey: "AIzaSyAbPxBNmgQ4NfthpjIyqAHAtmI1aETp-IU",
   authDomain: "doorhub-2bd7c.firebaseapp.com",
@@ -13,13 +12,18 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-export const uploadFiles = (file: File) => {
-  const storage = getStorage();
-  const sRef = ref(storage, "products/");
-
-  uploadBytes(sRef, file).then((snapshot) => {
-    console.log("Upload Successfull", snapshot);
-  });
+export const uploadFiles = async (file: File) => {
+  const fileName = file.name + new Date().getTime();
+  const storage = getStorage(app);
+  const Sref = ref(storage, fileName);
+  try {
+    const snapshot = await uploadBytes(Sref, file);
+    console.log(snapshot);
+    return snapshot.metadata.fullPath;
+  } catch (error) {
+    console.log(error);
+  }
+  return null;
 };
 
 export { app };

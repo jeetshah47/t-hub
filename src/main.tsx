@@ -10,6 +10,7 @@ import ProductPage from "./module/product/page/ProductPage.tsx";
 import ViewOrderPage from "./module/admin/page/ViewOrderPage.tsx";
 import UserPages from "./module/user/page/UserPages.tsx";
 import OperationPage from "./module/admin/page/OperationPage.tsx";
+import CartPage from "./module/cart/page/CartPage.tsx";
 
 
 const router = createBrowserRouter([
@@ -27,7 +28,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        // element
+        children: [{
+          path: "/cart/:id",
+          element: <CartPage />
+        }]
       },
       {
         path: "/admin",
@@ -37,7 +41,7 @@ const router = createBrowserRouter([
             element: <ViewOrderPage />
           },
           {
-            path: "/admin/",
+            path: "/admin/products",
             element: <OperationPage />
           },
         ]

@@ -14,7 +14,7 @@ const NavBar = () => {
   const cartData = useContext(CartContext);
 
   const handleCartButton = () => {
-    navigate("/cart");
+    navigate(`/cart/${userData?.id}`);
   };
 
   const handleLogout = () => {
@@ -44,21 +44,6 @@ const NavBar = () => {
           <Link to={"/product/1"}>Contact</Link>
         </div>
         <div className="flex items-center gap-10">
-          <div onClick={handleCartButton} className="relative">
-            <Icon fontSize={"24px"} icon={"bytesize:cart"} />
-            <div className="absolute top-5 left-5 rounded-full bg-yellow-400 text-white text-xs w-5 h-5 flex items-center justify-center">
-              <p className="font-semibold">{cartData?.cartItems.length}</p>
-
-            </div>
-          </div>
-          {userData && (
-            <div>
-              <Avatar
-                initial={userData.first_name[0] + userData.last_name[0]}
-                id={userData.id ?? ""}
-              />
-            </div>
-          )}
           <div>
             {!userData && (
               <Link to={"/auth/login"}>
@@ -70,7 +55,14 @@ const NavBar = () => {
           </div>
           <div></div>
           <div>
-            {userData?.first_name === "admin" && (
+            {userData?.email.includes("admin") && (
+              <Link to={"/admin/products"}>
+                <span className="text-blue hover:cursor-pointer">Products</span>
+              </Link>
+            )}
+          </div>
+          <div>
+            {userData?.email.includes("admin") && (
               <Link to={"/admin/orders"}>
                 <span className="text-blue hover:cursor-pointer">
                   View Orders
@@ -85,6 +77,22 @@ const NavBar = () => {
               </div>
             )}
           </div>
+          {!userData?.email.includes("admin") && (
+            <div onClick={handleCartButton} className="relative">
+              <Icon fontSize={"24px"} icon={"bytesize:cart"} />
+              <div className="absolute top-5 left-5 rounded-full bg-yellow-400 text-white text-xs w-5 h-5 flex items-center justify-center">
+                <p className="font-semibold">{cartData?.cartItems.length}</p>
+              </div>
+            </div>
+          )}
+          {userData && (
+            <div>
+              <Avatar
+                initial={userData.first_name[0] + userData.last_name[0]}
+                id={userData.id ?? ""}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

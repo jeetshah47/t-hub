@@ -6,10 +6,13 @@ import ProductPage from "./module/product/page/ProductPage";
 import ViewOrderPage from "./module/admin/page/ViewOrderPage";
 import UserPages from "./module/user/page/UserPages";
 import { createContext, useState } from "react";
+import OperationPage from "./module/admin/page/OperationPage";
+import CartPage from "./module/cart/page/CartPage";
 
 interface CartContextType {
   cartItems: string[];
   addToCart: (item: string) => void;
+  addCart: (items: string[]) => void;
 }
 const CartContext = createContext<CartContextType | undefined>(undefined);
 function App() {
@@ -19,9 +22,13 @@ function App() {
     setCartItems([...cartItems, item]);
   };
 
+  const addCart = (items: string[]) => {
+    setCartItems(items);
+  };
+
   return (
     <div className="flex flex-col w-full h-full">
-      <CartContext.Provider value={{ cartItems, addToCart }}>
+      <CartContext.Provider value={{ cartItems, addToCart, addCart }}>
         <div className="flex-initial justify-center flex">
           <NavBar />
         </div>
@@ -29,8 +36,10 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/admin/orders" element={<ViewOrderPage />} />
+            <Route path="/admin/products" element={<OperationPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/user/:id" element={<UserPages />} />
+            <Route path="/cart/:id" element={<CartPage />} />
           </Routes>
         </div>
         <div>
