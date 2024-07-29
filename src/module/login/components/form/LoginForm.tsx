@@ -1,8 +1,8 @@
 import { useState } from "react";
 // import { Icon } from "@iconify/react";
-import { Link, redirect, useNavigate } from "react-router-dom";
+import { Link, redirect, useLocation, useNavigate } from "react-router-dom";
 import Loader from "../../../common/loader/Loader";
-import { loginUser } from "../../apis/login.api";
+import { loginUser, loginUserAdmin } from "../../apis/login.api";
 import { setLocalStorage } from "../../../utils/LocalStorage";
 // import { loginUser } from "../../apis/login.api";
 
@@ -19,6 +19,9 @@ const LoginForm = () => {
     redirect("/auth/singup");
   };
 
+  const path = useLocation();
+  console.log(path);
+
   const handleLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoader(true);
@@ -27,13 +30,18 @@ const LoginForm = () => {
         email: loginData.email,
         password: loginData.password,
       };
-      const userLogin = await loginUser(payload);
+
+      const userLogin = path.pathname.includes("admin")
+        ? await loginUserAdmin(payload)
+        : await loginUser(payload);
       console.log(userLogin);
+      
       setLoader(false);
       setLocalStorage("user", userLogin);
       navigate("/");
+
     } catch (error) {
-      console.log(error); 
+      console.log(error);
       setLoader(false);
     }
   };

@@ -27,3 +27,14 @@ export const signupUser = async (payload: UserData): Promise<UserData> => {
 
   return result.data;
 };
+
+export const loginUserAdmin = async (payload: {
+  email: string;
+  password: string;
+}): Promise<UserData> => {
+  const result = await axios.post("http://localhost:5000/login/admin", {
+    ...payload,
+  });
+
+  return result.data;
+};

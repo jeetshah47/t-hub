@@ -53,6 +53,10 @@ const router = createBrowserRouter([
         element: <LoginForm />,
       },
       {
+        path: "/auth/admin",
+        element: <LoginForm />,
+      },
+      {
         path: "/auth/signup",
         element: <SignupForm />,
       },
