@@ -14,7 +14,7 @@ const UserProfile = () => {
   return (
     <div>
       <div className="py-6">
-        <p className="text-2xl font-bold">Update Yourself</p>
+        <p className="text-2xl font-bold">About Yourself</p>
       </div>
       <form>
         <div className="gap-8 items-center">

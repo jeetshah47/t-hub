@@ -63,7 +63,7 @@ const OrderDetails = () => {
     <div className="w-full flex items-center justify-center">
       <div className="w-1/2">
         {order?.items.map((item) => (
-          <div key={item.order_item_id} className="py-3">
+          <div key={item.order_item_id} className="py-3 border-b-2">
             <div className="flex items-center gap-5">
               {item.tracks.map((track) => (
                 <div key={track.status} className="flex flex-col items-center">
@@ -75,6 +75,9 @@ const OrderDetails = () => {
             </div>
             <div className="py-2">
               <div className="flex gap-4">
+                <div>
+                  <img alt="NV" src="/product/1.png" width={50} height={50} />
+                </div>
                 <p className="text-lg text-secondary">
                   Name: {item.product.name}
                 </p>

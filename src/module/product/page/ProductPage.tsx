@@ -9,7 +9,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState<Product>();
   const { id } = params;
   const cart = useContext(CartContext);
-
+  const [active, setActive] = useState("");
   const handleUpdateCart = () => {
     cart?.addToCart(id ?? "1");
   };
@@ -24,18 +24,21 @@ const ProductPage = () => {
     };
     fetchData();
     console.log(id);
-    
   }, [id]);
 
   return (
-    <div className="flex justify-center h-screen">
+    <div className="flex justify-center ">
       <div className="w-3/4">
         <div>
           <p>Home</p>
         </div>
         <div className="flex h-96 gap-4">
           <div className="w-1/4">
-            <img className="w-full h-full" src={product?.images_location} alt="product" />
+            <img
+              className="w-full h-full"
+              src={product?.images_location}
+              alt="product"
+            />
           </div>
           <div className="w-3/4 py-2 space-y-4">
             <p>{product?.name}</p>
@@ -78,6 +81,48 @@ const ProductPage = () => {
                 >
                   {product?.description}
                 </p>
+              </div>
+              <div className="flex gap-3">
+                <div
+                onClick={() => setActive("S")}
+                  className={`border ${
+                    active === "S" && "bg-black text-white"
+                  } hover:text-white p-2 hover:bg-black cursor-pointer`}
+                >
+                  S
+                </div>
+                <div
+                onClick={() => setActive("M")}
+                  className={`border ${
+                    active === "M" && "bg-black text-white"
+                  } hover:text-white p-2 hover:bg-black cursor-pointer`}
+                >
+                  M
+                </div>
+                <div
+                onClick={() => setActive("L")}
+                  className={`border ${
+                    active === "L" && "bg-black text-white"
+                  } hover:text-white p-2 hover:bg-black cursor-pointer`}
+                >
+                  L
+                </div>
+                <div
+                onClick={() => setActive("XL")}
+                  className={`border ${
+                    active === "XL" && "bg-black text-white"
+                  } hover:text-white p-2 hover:bg-black cursor-pointer`}
+                >
+                  XL
+                </div>
+                <div
+                onClick={() => setActive("XXL")}
+                  className={`border ${
+                    active === "XXL" && "bg-black text-white"
+                  } hover:text-white p-2 hover:bg-black cursor-pointer`}
+                >
+                  XXL
+                </div>
               </div>
               <button
                 onClick={handleUpdateCart}

@@ -101,7 +101,7 @@ const CartPage = () => {
             {products.map((product, index) => (
               <tr key={index} className="border-b py-3">
                 <td className="py-4 text-secondary">
-                  <img className="h-36 w-30" src={"/product/1.png"} alt="NA" />
+                  <img className="h-36 w-30" src={product.images_location} alt="NA" />
                 </td>
                 <td>{product.name}</td>
                 <td>${product.price}</td>
