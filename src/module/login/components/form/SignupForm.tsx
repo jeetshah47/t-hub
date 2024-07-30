@@ -34,6 +34,8 @@ const SignupForm = () => {
       navigate("/auth/login");
     } catch (error) {
       console.log(error);
+      alert("User Not Created");
+
     }
   };
 
@@ -64,14 +66,21 @@ const SignupForm = () => {
                 <div className="py-3" />
                 <div>
                   <p className="text-secondary py-1">Phone Number</p>
+                  <div className="flex">
                   <input
-                    className="border outline-none rounded-md w-full py-2 px-2"
+                    className="border outline-none w-10 rounded-md py-2 px-2"
+                    type="text"
+                    value={"+1"}
+                  />
+                  <input
+                    className="border outline-none rounded-md flex-1 w-full py-2 px-2"
                     type="text"
                     value={user.phone_number}
                     onChange={(e) =>
                       setUser({ ...user, phone_number: e.target.value })
                     }
                   />
+                  </div>
                 </div>
                 <div className="py-3" />
                 <div>
@@ -104,7 +113,7 @@ const SignupForm = () => {
                   <p className="text-secondary py-1">Email</p>
                   <input
                     className="border outline-none rounded-md w-full py-2 px-2"
-                    type="text"
+                    type="email"
                     value={user.email}
                     onChange={(e) =>
                       setUser({ ...user, email: e.target.value })
@@ -130,6 +139,13 @@ const SignupForm = () => {
               user.confirm_password !== user.password && (
                 <span className="text-red-600 font-semibold">
                   Error Password Did not match
+                </span>
+              )}
+            
+            {
+              user.password.length < 6 && (
+                <span className="text-red-600 font-semibold">
+                  Password Should be more than 6 digit
                 </span>
               )}
 

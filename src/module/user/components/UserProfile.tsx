@@ -58,11 +58,7 @@ const UserProfile = () => {
             />
           </div>
           <div className="py-3" />
-          <div className="py-2">
-            <button className="py-4 w-full bg-purple-500 rounded text-white font-bold">
-              Update Profile
-            </button>
-          </div>
+         
         </div>
       </form>
     </div>

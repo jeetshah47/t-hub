@@ -8,6 +8,7 @@ import UserPages from "./module/user/page/UserPages";
 import { createContext, useState } from "react";
 import OperationPage from "./module/admin/page/OperationPage";
 import CartPage from "./module/cart/page/CartPage";
+import OrderDetails from "./module/admin/components/order/OrderDetails";
 
 interface CartContextType {
   cartItems: string[];
@@ -36,9 +37,11 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/admin/orders" element={<ViewOrderPage />} />
+            <Route path="/admin/orders/:id" element={<OrderDetails />} />
             <Route path="/admin/products" element={<OperationPage />} />
             <Route path="/product/:id" element={<ProductPage />} />
             <Route path="/user/:id" element={<UserPages />} />
+            <Route path="/user/orders/:id" element={<OrderDetails />} />
             <Route path="/cart/:id" element={<CartPage />} />
           </Routes>
         </div>

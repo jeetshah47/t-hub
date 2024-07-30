@@ -52,6 +52,10 @@ const CartPage = () => {
   };
 
   const handlePlaceOrder = async () => {
+    if (!currentAddress) {
+      alert("Select Address");
+      return;
+    }
     try {
       if (id && cart?.cartItems && currentAddress) {
         const place = await createOrder({
@@ -61,13 +65,12 @@ const CartPage = () => {
         });
         console.log(place);
         alert("Order Placed Successfully");
-        cart.addCart([])
-        navigate("/")
+        cart.addCart([]);
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
       alert("Order Placed Failed");
-
     }
   };
 
@@ -119,6 +122,7 @@ const CartPage = () => {
                 </td>
               </tr>
             ))}
+            {products.length === 0 && "Please add some products"}
           </tbody>
         </table>
       </div>
@@ -139,13 +143,21 @@ const CartPage = () => {
             </p>
           ))}
         </div>
+        <div className="py-3">
+          <p>Payment Mode: COD </p>
+        </div>
         <div className="py-2">
-          <button
-            onClick={handlePlaceOrder}
-            className="py-2 px-4 bg-blue text-white text-center w-full"
-          >
-            Place Order
-          </button>
+          {products.length === 0 &&
+            address.length === 0 &&
+            "Please add Address from profile section"}
+          {products.length && address.length !== 0 && (
+            <button
+              onClick={handlePlaceOrder}
+              className="py-2 px-4 bg-blue text-white text-center w-full"
+            >
+              Place Order
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -42,6 +42,7 @@ const LoginForm = () => {
 
     } catch (error) {
       console.log(error);
+      alert("Loggin Failed Please Ensure you enter correct credentials")
       setLoader(false);
     }
   };
@@ -73,7 +74,7 @@ const LoginForm = () => {
                 <p className="text-secondary py-1">Password</p>
                 <input
                   className="border outline-none rounded-md w-full py-2 px-2"
-                  type="text"
+                  type="password"
                   value={loginData.password}
                   onChange={(e) =>
                     setLoginData({ ...loginData, password: e.target.value })
@@ -85,14 +86,14 @@ const LoginForm = () => {
                   Log In
                 </button>
               </div>
-              <div className="flex items-center gap-3 py-2">
+            { !path.pathname.includes("admin") && <div className="flex items-center gap-3 py-2">
                 <div className="w-full h-px bg-secondary" />
                 <p className="text-secondary">OR</p>
                 <div className="w-full h-px bg-secondary" />
-              </div>
+              </div>}
             </form>
             <div>
-              <div className="py-2">
+             {!path.pathname.includes("admin") && <div className="py-2">
                 <Link to={"/auth/signup"}>
                   <button
                     onClick={handleGoogleAuth}
@@ -101,7 +102,7 @@ const LoginForm = () => {
                     Signup
                   </button>
                 </Link>
-              </div>
+              </div>}
             </div>
           </div>
         </div>

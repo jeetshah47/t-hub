@@ -41,7 +41,7 @@ const NavBar = () => {
         <div className="flex flex-1 justify-center items-center gap-8">
           <Link to={"/"}>Home</Link>
           <Link to={"/"}>Shop</Link>
-          <Link to={"/product/1"}>Contact</Link>
+          {/* <Link to={"/product/1"}>Contact</Link> */}
         </div>
         <div className="flex items-center gap-10">
           <div>
@@ -64,6 +64,15 @@ const NavBar = () => {
           <div>
             {userData?.email.includes("admin") && (
               <Link to={"/admin/orders"}>
+                <span className="text-blue hover:cursor-pointer">
+                  View Orders
+                </span>
+              </Link>
+            )}
+          </div>
+          <div>
+            {!userData?.email.includes("admin") && userData && (
+              <Link to={`/user/orders/${userData.id}`}>
                 <span className="text-blue hover:cursor-pointer">
                   View Orders
                 </span>

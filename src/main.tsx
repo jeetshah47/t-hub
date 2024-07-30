@@ -11,7 +11,7 @@ import ViewOrderPage from "./module/admin/page/ViewOrderPage.tsx";
 import UserPages from "./module/user/page/UserPages.tsx";
 import OperationPage from "./module/admin/page/OperationPage.tsx";
 import CartPage from "./module/cart/page/CartPage.tsx";
-
+import OrderDetails from "./module/admin/components/order/OrderDetails.tsx";
 
 const router = createBrowserRouter([
   {
@@ -27,25 +27,36 @@ const router = createBrowserRouter([
         element: <UserPages />,
       },
       {
+        path: "/user/orders/:id",
+        element: <OrderDetails />,
+      },
+      {
         path: "/cart",
-        children: [{
-          path: "/cart/:id",
-          element: <CartPage />
-        }]
+        children: [
+          {
+            path: "/cart/:id",
+            element: <CartPage />,
+          },
+        ],
       },
       {
         path: "/admin",
         children: [
           {
             path: "/admin/orders",
-            element: <ViewOrderPage />
+            element: <ViewOrderPage />,
           },
+
           {
             path: "/admin/products",
-            element: <OperationPage />
+            element: <OperationPage />,
           },
-        ]
-      }
+          {
+            path: "/admin/orders/:id",
+            element: <OrderDetails />,
+          },
+        ],
+      },
     ],
   },
   {
@@ -66,7 +77,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

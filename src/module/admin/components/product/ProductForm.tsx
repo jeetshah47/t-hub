@@ -3,10 +3,10 @@ import { uploadFiles } from "../../../utils/Firebase";
 import { addProduct } from "../../api/admin.api";
 
 type ProductFormProps = {
-  onSubmit: () => void
-}
+  onSubmit: () => void;
+};
 
-const ProductForm = ({onSubmit}:ProductFormProps) => {
+const ProductForm = ({ onSubmit }: ProductFormProps) => {
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -15,8 +15,21 @@ const ProductForm = ({onSubmit}:ProductFormProps) => {
     images_location: "",
     price: 0,
   });
-
   const [image, setImage] = useState<File>();
+  const options = [
+    "Breaking Bad",
+    "Stranger Things",
+    "Game of Thrones",
+    "The Boys",
+    "Marvel",
+    "DC",
+    "Star Wars",
+    "Incredibles",
+    "Death Note",
+    "Fullmetal Alchemist",
+    "Naruto",
+    "Attack on Titan",
+  ];
 
   const handleUploadImage = async () => {
     if (image) {
@@ -32,6 +45,18 @@ const ProductForm = ({onSubmit}:ProductFormProps) => {
   };
 
   const handleAddProduct = async () => {
+    if (
+      !product.name ||
+      !product.colour ||
+      !product.description ||
+      !product.description ||
+      !product.images_location ||
+      !product.price ||
+      !product.type
+    ) {
+      alert("All Fields Required");
+      return;
+    }
     try {
       const create = await addProduct(product);
       console.log(create);
@@ -84,12 +109,23 @@ const ProductForm = ({onSubmit}:ProductFormProps) => {
           </div>
           <div>
             <p className="text-secondary py-1">Type</p>
-            <input
+            <select
               className="border outline-none rounded-md w-full py-2 px-2"
-              type="text"
               value={product.type}
-              onChange={(e) => setProduct({ ...product, type: e.target.value })}
-            />
+              onChange={(e) => {
+                setProduct({ ...product, type: e.target.value });
+                console.log(e.target.value);
+              }}
+            >
+              {options.map((op) => (
+                <option
+                  value={op}
+                  key={op}
+                >
+                  {op}
+                </option>
+              ))}
+            </select>
           </div>
           <div className=" ">
             <div className="flex-1">
@@ -126,7 +162,12 @@ const ProductForm = ({onSubmit}:ProductFormProps) => {
             />
           </div>
           <div className="py-3">
-            <button type="submit" className="py-2 px-4 w-full bg-black text-white text-center rounded">Create Product</button>
+            <button
+              type="submit"
+              className="py-2 px-4 w-full bg-black text-white text-center rounded"
+            >
+              Create Product
+            </button>
           </div>
         </form>
       </div>
