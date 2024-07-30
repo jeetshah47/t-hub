@@ -88,3 +88,8 @@ export const updateOrders = async (payload: {
   });
   return result.data;
 };
+
+export const deleteProduct = async (id: string) => {
+  const result = await axios.delete("http://127.0.0.1:5000/product/" + id);
+  return result.data;
+};

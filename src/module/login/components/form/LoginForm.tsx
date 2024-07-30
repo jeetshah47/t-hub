@@ -64,6 +64,7 @@ const LoginForm = () => {
                   className="border outline-none rounded-md w-full py-2 px-2"
                   type="text"
                   value={loginData.email}
+                  required
                   onChange={(e) =>
                     setLoginData({ ...loginData, email: e.target.value })
                   }
@@ -76,6 +77,7 @@ const LoginForm = () => {
                   className="border outline-none rounded-md w-full py-2 px-2"
                   type="password"
                   value={loginData.password}
+                  required
                   onChange={(e) =>
                     setLoginData({ ...loginData, password: e.target.value })
                   }

@@ -21,6 +21,16 @@ const SignupForm = () => {
   };
 
   const handleCreateUser = async () => {
+    if (
+      !user.first_name ||
+      !user.last_name ||
+      !user.password ||
+      !user.phone_number ||
+      !user.email
+    ) {
+      alert("Please Enter All Details");
+      return;
+    }
     try {
       const createRequest = await signupUser({
         email: user.email,
@@ -35,7 +45,6 @@ const SignupForm = () => {
     } catch (error) {
       console.log(error);
       alert("User Not Created");
-
     }
   };
 
@@ -67,19 +76,24 @@ const SignupForm = () => {
                 <div>
                   <p className="text-secondary py-1">Phone Number</p>
                   <div className="flex">
-                  <input
-                    className="border outline-none w-10 rounded-md py-2 px-2"
-                    type="text"
-                    value={"+1"}
-                  />
-                  <input
-                    className="border outline-none rounded-md flex-1 w-full py-2 px-2"
-                    type="text"
-                    value={user.phone_number}
-                    onChange={(e) =>
-                      setUser({ ...user, phone_number: e.target.value })
-                    }
-                  />
+                    <input
+                      className="border outline-none w-10 rounded-md py-2 px-2"
+                      type="text"
+                      value={"+1"}
+                    />
+                    <input
+                      className="border outline-none rounded-md flex-1 w-full py-2 px-2"
+                      type="text"
+                      value={user.phone_number}
+                      onChange={(e) => {
+                        let input = e.target.value.replace(/\D/g, "");
+                        // Allow only up to 10 digits
+                        if (input.length > 10) {
+                          input = input.substring(0, 10);
+                        }
+                        setUser({ ...user, phone_number: input });
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="py-3" />
@@ -141,13 +155,12 @@ const SignupForm = () => {
                   Error Password Did not match
                 </span>
               )}
-            
-            {
-              user.password.length < 6 && (
-                <span className="text-red-600 font-semibold">
-                  Password Should be more than 6 digit
-                </span>
-              )}
+
+            {user.password.length < 6 && (
+              <span className="text-red-600 font-semibold">
+                Password Should be more than 6 digit
+              </span>
+            )}
 
             <div className="py-4">
               <button className="w-full text-center text-white bg-blue rounded-full py-3">

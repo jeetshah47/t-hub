@@ -36,7 +36,7 @@ const NavBar = () => {
     <div className={`flex-initial w-3/5 py-4 ${!show && "hidden"}`}>
       <div className={`flex flex-1 justify-between items-center max-sm:hidden`}>
         <div>
-          <p className="font-bold text-2xl">T Hub</p>
+          <p className="font-bold text-2xl">Fan Tshirts</p>
         </div>
         <div className="flex flex-1 justify-center items-center gap-8">
           <Link to={"/"}>Home</Link>

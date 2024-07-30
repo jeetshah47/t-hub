@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { addAddress, fetchAddress } from "../apis/UserApis";
+import { addAddress, deleteAddress, fetchAddress } from "../apis/UserApis";
 import Modal from "../../common/modal/Modal";
 import AddressForm from "./AddressForm";
 
@@ -40,6 +40,22 @@ const UserAddress = ({ userId }: UserAddressProps) => {
     setShowModal(false);
   };
 
+  const handleAddressDelete = async (id: string) => {
+    const bool = confirm("Do you want to delete this address");
+    if (bool) {
+      try {
+        const deletea = await deleteAddress(id);
+        console.log(deletea);
+        
+        alert("Address Delete Successfully");
+        window.location.reload();
+      } catch (error) {
+        alert("Cannot Delete Address");
+        console.log(error);
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const addresses = await fetchAddress(userId);
@@ -73,6 +89,12 @@ const UserAddress = ({ userId }: UserAddressProps) => {
             <p>
               <span className="font-bold">Country</span>: {address.country}
             </p>
+            <button
+              onClick={() => handleAddressDelete(address.id ?? "")}
+              className="py-2 px-3 bg-black text-white"
+            >
+              Delete
+            </button>
           </div>
         </div>
       ))}
