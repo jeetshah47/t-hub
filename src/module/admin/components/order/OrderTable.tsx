@@ -31,7 +31,7 @@ const OrderTable = () => {
                   <th>Order Id</th>
                   <th>Order Number</th>
                   <th>Status</th>
-                  <th>Item</th>
+                  {/* <th>Item</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -47,7 +47,7 @@ const OrderTable = () => {
                         {to.tracks[0].status}
                       </p>
                     </td>
-                    <td className="py-4">{to.product.description}</td>
+                    {/* <td className="py-4">{to.product.description}</td> */}
                     <td className="py-4">{or.user.first_name}</td>
                     <td className="py-4">
                       <button

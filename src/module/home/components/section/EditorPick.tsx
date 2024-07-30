@@ -14,8 +14,8 @@ const EditorPick = () => {
 
   const handleApplyFilter = async () => {
     const data = await getProducts({
-      colours: filter.colours,
-      types: filter.types,
+      colours: [filter.colours],
+      types: filter.types[0] === "" ? null : filter.types,
       price_range: [
         parseInt(filter.price_range[0]),
         parseInt(filter.price_range[1]),

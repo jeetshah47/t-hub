@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams, useRoutes } from "react-router-dom";
+import { useLocation, useParams} from "react-router-dom";
 import { fetchOrders, Order, updateOrders } from "../../api/admin.api";
 
 const OrderDetails = () => {
   const { id } = useParams();
   const [order, setOrder] = useState<Order>();
-  const status = ["Placed", "Shipped", "Delivered", "Refunded"];
+  // const status = ["Placed", "Shipped", "Delivered", "Refunded"];
   const [reload, setReload] = useState(false);
   const path = useLocation();
 
@@ -76,7 +76,7 @@ const OrderDetails = () => {
             <div className="py-2">
               <div className="flex gap-4">
                 <div>
-                  <img alt="NV" src="/product/1.png" width={50} height={50} />
+                  <img alt="NV" src={item.product.images_location} width={50} height={50} />
                 </div>
                 <p className="text-lg text-secondary">
                   Name: {item.product.name}
@@ -85,7 +85,7 @@ const OrderDetails = () => {
                   Colour: {item.product.colour}
                 </p>
                 <p className="text-lg text-secondary">
-                  Description: {item.product.description}
+                  {/* Description: {item.product.description} */}
                 </p>
               </div>
             </div>

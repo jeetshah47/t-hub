@@ -11,10 +11,10 @@ export interface Product {
 }
 
 export interface Payload {
-  colours?: string;
-  types?: string[];
-  price_range?: number[];
-  ids?: string[];
+  colours?: string[] | null;
+  types?: string[] | null;
+  price_range?: number[] | null;
+  ids?: string[] | null;
 }
 
 export interface Order {
@@ -34,6 +34,7 @@ export interface Order {
       description: "";
       name: "";
       product_id: "";
+      images_location: "";
     };
     tracks: {
       Time: "";

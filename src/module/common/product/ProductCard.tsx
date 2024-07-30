@@ -14,7 +14,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       />
       <div className="flex flex-col py-4 space-y-3 items-center w-full justify-center">
         <p>{product.name}</p>
-        <p className="text-primary font-bold">{product.description}</p>
+        {/* <p className="text-primary font-bold">{product.description}</p> */}
         <p className="text-primary font-bold">{product.colour}</p>
         <div className="flex gap-2 font-semibold">
           <p className="text-secondary">{product.type}</p>

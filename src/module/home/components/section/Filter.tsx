@@ -128,6 +128,8 @@ const Filter = ({
         <input
           placeholder="Colour"
           className="border outline-none rounded-md  px-2"
+          value={filters.colours}
+          onChange={(e) => setFilter({...filters, colours: e.target.value})}
         />
         <div>
 
